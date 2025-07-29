@@ -2,7 +2,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from app.movie import movie
 
-uri = "mongodb+srv://rachel:duffy@moviecluster.4uiilda.mongodb.net/?retryWrites=true&w=majority&appName=MovieCluster"
+uri = "put your urn here :)"
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
