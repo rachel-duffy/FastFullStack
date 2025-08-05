@@ -18,6 +18,14 @@ async def get_all_movies():
 async def post_movie(new_movie: movie.Movie):
     try:
         movie_inserted = await mongo.post_movie(new_movie)
-        return {"message": "Movie inserted sucessfully", "inserted_id": str(movie_inserted.inserted_id)}
+        return {"message": "Movie inserted successfully", "inserted_id": str(movie_inserted.inserted_id)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to add movie: {new_movie.name}")
+
+@router.delete("/")
+async def delete_move(movie_name: str):
+        try:
+            await mongo.delete_movie(movie_name)
+            return {"message": f"{movie_name} deleted successfully "}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to delete movie: {movie_name}")
