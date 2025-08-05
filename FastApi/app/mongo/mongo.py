@@ -2,7 +2,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from app.movie import movie
 
-uri = "put your urn here :)"
+uri = "mongodb+srv://ahmed:lamidi@testcluster.juh6eus.mongodb.net/?retryWrites=true&w=majority&appName=testCluster"
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
@@ -17,3 +17,6 @@ async def get_movies():
 async def post_movie(new_movie: movie.Movie):
     movie_dict = new_movie.model_dump()
     return movie_collection.insert_one(movie_dict)
+
+async def delete_movie(movie_name: str):
+    movie_collection.delete_one({"name" : movie_name})
